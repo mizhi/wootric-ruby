@@ -69,6 +69,14 @@ class Wootric::Client
       connection.delete("end_users/#{end_user_id}/responses/#{response_id}")
     end
 
+    def update_response(response_id, options={})
+      connection.put("responses/#{response_id}") do |req|
+        req.params['completed'] = options[:completed] unless options[:completed].nil?
+        req.params['excluded_from_calculations'] = options[:excluded_from_calculations] unless options[:excluded_from_calculations].nil?
+        req.params['end_user.properties'] = options[:end_user_properties] unless options[:end_user_properties].nil?
+      end
+    end
+
   private
 
     def add_pagination_params(req, options)

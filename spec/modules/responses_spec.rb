@@ -15,7 +15,7 @@ class Wootric::Client
     end
 
     describe "#end_user_responses" do
-      it "returns all responses for a end user" do
+      it "returns all responses for an end user" do
         expect(@client.end_user_responses(16313044)).to be_an_instance_of(Array)
       end
     end
@@ -56,5 +56,10 @@ class Wootric::Client
       end
     end
 
+    describe "#update_response" do
+      it "updates a response" do
+        expect(@client.update_response(@response, excluded_from_calculations: true).status).to eq(204)
+      end
+    end
   end
 end
